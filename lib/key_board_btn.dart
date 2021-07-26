@@ -42,6 +42,8 @@ class _KeyBoardBtnState extends State<KeyBoardBtn> {
       child: Container(
         color: isPress ? keyStyleMode.pressBgColor : keyStyleMode.commonBgColor,
         alignment: Alignment.center,
+        width: widget.width,
+        height: widget.height,
         child: Text(
           widget.keyMode.title,
           style: TextStyle(
