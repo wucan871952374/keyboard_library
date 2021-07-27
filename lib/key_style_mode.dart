@@ -20,7 +20,7 @@ class KeyStyleMode {
 class KeyMode {
   KeyStyleMode keyStyleMode;
   String title;
-  int inputType; // 0  表示输入， 1.表示删除一位，2.表示清空
+  int inputType; // 0  表示输入， 1.表示删除一位，2.表示清空  3.表示关闭
   KeyMode(this.keyStyleMode, this.title, {this.inputType = 0});
 }
 
