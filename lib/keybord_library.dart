@@ -42,7 +42,7 @@ class NumKeyBoard extends StatelessWidget {
       width: width,
       height: height,
       color: bgColor,
-      margin: EdgeInsets.only(top: runSpace),
+      padding: EdgeInsets.only(top: runSpace),
       child: Wrap(
         spacing: space,
         runSpacing: runSpace,
@@ -158,7 +158,7 @@ class _BigKeyBoardState extends State<BigKeyBoard> {
         onPress: () {
           dealKeyPress(keyMode);
         },
-        width: btnWidth,
+        width: keyMode.inputType == 1 ? btnWidth * 2 : btnWidth,
         height: btnHeight,
       ));
     });
@@ -166,7 +166,7 @@ class _BigKeyBoardState extends State<BigKeyBoard> {
       width: widget.width,
       height: widget.height,
       color: widget.lineColor,
-      margin: EdgeInsets.only(top: 1),
+      padding: EdgeInsets.only(top: 1),
       child: Wrap(
         spacing: 1,
         runSpacing: 1,
@@ -252,7 +252,9 @@ class _BigKeyBoardState extends State<BigKeyBoard> {
         }
         break;
       case 3:
-        widget.closeCallBack!();
+        if (widget.closeCallBack != null) {
+          widget.closeCallBack!();
+        }
         break;
     }
   }
