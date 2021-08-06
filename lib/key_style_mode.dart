@@ -11,7 +11,7 @@ class KeyStyleMode {
   KeyStyleMode(
       {this.commonTextColor = Colors.black,
       this.pressTextColor = Colors.white,
-      this.commonBgColor = Colors.white,
+      this.commonBgColor = const Color(0xFFF8F8F8),
       this.pressBgColor = Colors.blueAccent,
       this.textSize = 20});
 }

@@ -1,6 +1,6 @@
 name: keybord_library
-description: A new Flutter project.
-version: 0.0.2
+description: 数字键盘和全键盘
+version: 0.0.3
 homepage: https://github.com/wucan871952374/keyboard_library
 
 environment:
@@ -25,9 +25,12 @@ dev_dependencies:
 flutter:
 
   # To add assets to your package, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+   assets:
+     # assets-generator-begin
+     # assets/*
+    - assets/keyboard_delete_black.png
+    - assets/keyboard_delete_white.png
+     # assets-generator-end
   #
   # For details regarding assets in packages, see
   # https://flutter.dev/assets-and-images/#from-packages

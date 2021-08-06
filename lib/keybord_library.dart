@@ -14,11 +14,12 @@ class NumKeyBoard extends StatelessWidget {
   final double width;
   final double height;
   final double space;
+  final double radius;
   final double runSpace;
   final Color bgColor;
 
   const NumKeyBoard(this.limits, this.keyStyleMode, this.width, this.height,
-      {Key? key, this.space = 10, this.runSpace = 10, this.bgColor = Colors.white})
+      {Key? key, this.space = 10, this.runSpace = 10, this.bgColor = Colors.white, this.radius = 0})
       : super(key: key);
 
   @override
@@ -30,6 +31,7 @@ class NumKeyBoard extends StatelessWidget {
     keys.forEach((keyMode) {
       keyBtns.add(KeyBoardBtn(
         keyMode,
+        radius: radius,
         onPress: () {
           keyPress(keyMode);
         },
@@ -38,16 +40,19 @@ class NumKeyBoard extends StatelessWidget {
       ));
     });
 
-    return Container(
-      width: width,
-      height: height,
-      color: bgColor,
-      padding: EdgeInsets.only(top: runSpace),
-      child: Wrap(
-        spacing: space,
-        runSpacing: runSpace,
-        alignment: WrapAlignment.center,
-        children: keyBtns,
+    return ClipRRect(
+      borderRadius: BorderRadius.all(Radius.circular(radius)),
+      child: Container(
+        width: width,
+        height: height,
+        color: bgColor,
+        padding: EdgeInsets.only(top: runSpace),
+        child: Wrap(
+          spacing: space,
+          runSpacing: runSpace,
+          alignment: WrapAlignment.center,
+          children: keyBtns,
+        ),
       ),
     );
   }
