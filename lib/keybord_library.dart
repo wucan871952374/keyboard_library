@@ -17,9 +17,15 @@ class NumKeyBoard extends StatelessWidget {
   final double radius;
   final double runSpace;
   final Color bgColor;
+  final StreamController? streamController;
 
   const NumKeyBoard(this.limits, this.keyStyleMode, this.width, this.height,
-      {Key? key, this.space = 10, this.runSpace = 10, this.bgColor = Colors.white, this.radius = 0})
+      {Key? key,
+      this.space = 10,
+      this.runSpace = 10,
+      this.bgColor = Colors.white,
+      this.radius = 0,
+      this.streamController})
       : super(key: key);
 
   @override
@@ -80,17 +86,21 @@ class NumKeyBoard extends StatelessWidget {
       return;
     }
     if (keyMode.inputType == 0) {
+      InputStatus inputStatus = InputStatus.FAILURE;
       if (limitMode.inputType == 0) {
         //字符串
-        CheckInputUtil.inputStringCheck(limitMode.controller, keyMode.title,
+        inputStatus = CheckInputUtil.inputStringCheck(limitMode.controller, keyMode.title,
             canInputPoint: limitMode.enableInputPoint, maxLength: limitMode.maxLength);
       } else if (limitMode.inputType == 1) {
         //数字
-        CheckInputUtil.inputNumCheck(limitMode.controller, keyMode.title,
+        inputStatus = CheckInputUtil.inputNumCheck(limitMode.controller, keyMode.title,
             enableInputDecimal: limitMode.enableInputPoint,
             maxInput: limitMode.maxInput,
             maxLengthInteger: limitMode.maxLength,
             maxLengthDecimal: limitMode.maxLengthDecimal);
+      }
+      if (inputStatus == InputStatus.SUCCESS) {
+        streamController?.add(limitMode.controller);
       }
     } else {
       TextEditingController controller = limitMode.controller;
@@ -98,6 +108,7 @@ class NumKeyBoard extends StatelessWidget {
       if (text.isNotEmpty) {
         controller.text = text.substring(0, text.length - 1);
         controller.selection = TextSelection.fromPosition(TextPosition(offset: controller.text.length));
+        streamController?.add(limitMode.controller);
       }
     }
   }

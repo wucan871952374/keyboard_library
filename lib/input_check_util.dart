@@ -40,7 +40,7 @@ class CheckInputUtil {
   }
 
   ///处理字符串的输入校验
-  static InputStatus? inputStringCheck(TextEditingController controller, String inputValue,
+  static InputStatus inputStringCheck(TextEditingController controller, String inputValue,
       {bool canInputPoint = false, int? maxLength}) {
     if (inputValue == '.' && !canInputPoint) {
       return InputStatus.FAILURE;
